@@ -15,7 +15,7 @@ public class SignManager {
     protected SignData signData;
 
     public void onRender(SignBlockEntity signEntity, BlockPosition position) {
-        if (!SignSearchAddon.getConfig().enabled().get()) return;
+        if (!SignSearchAddon.getConfig().enabled().get() || !SignSearchAddon.getSearchSettings().isEnabled()) return;
         SignData signData = this.signDataMap.get(position);
         if (signData == null || signData.getLastSignUpdated() + 500L < System.currentTimeMillis()) {
             signData = new SignData(signEntity);
