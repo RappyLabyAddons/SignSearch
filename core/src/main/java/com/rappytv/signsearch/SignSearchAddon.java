@@ -1,5 +1,7 @@
 package com.rappytv.signsearch;
 
+import com.rappytv.signsearch.gui.navigation.SignSearchNavigationActivity;
+import com.rappytv.signsearch.gui.navigation.SignSearchNavigationElement;
 import com.rappytv.signsearch.utils.SignManager;
 import com.rappytv.signsearch.utils.SignSearchSettings;
 import net.labymod.api.addon.LabyAddon;
@@ -18,6 +20,8 @@ public class SignSearchAddon extends LabyAddon<SignSearchConfiguration> {
         config = configuration();
         signManager = new SignManager();
         searchSettings = new SignSearchSettings(config.enabled());
+        SignSearchNavigationActivity activity = new SignSearchNavigationActivity();
+        labyAPI().navigationService().register(new SignSearchNavigationElement(activity));
     }
 
     @Override
