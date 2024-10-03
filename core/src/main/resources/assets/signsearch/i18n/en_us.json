@@ -1,0 +1,9 @@
+{
+    "signsearch": {
+        "settings": {
+            "enabled": {
+                "name": "Enabled"
+            }
+        }
+    }
+}
