@@ -20,7 +20,7 @@ public class SignSearchAddon extends LabyAddon<SignSearchConfiguration> {
         config = configuration();
         signManager = new SignManager();
         searchSettings = new SignSearchSettings(config.enabled());
-        SignSearchNavigationActivity activity = new SignSearchNavigationActivity();
+        SignSearchNavigationActivity activity = new SignSearchNavigationActivity(searchSettings);
         labyAPI().navigationService().register(new SignSearchNavigationElement(activity));
     }
 
