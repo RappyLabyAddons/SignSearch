@@ -4,6 +4,17 @@
             "enabled": {
                 "name": "Enabled"
             }
+        },
+        "ui": {
+            "title": "Sign search",
+            "label": {
+                "search": "Search",
+                "advanced": "Advanced search",
+                "advanced_label": "Advanced options",
+                "blacklist": "Blacklist",
+                "emptyFilter": "Filter empty servers",
+                "fullFilter": "Filter full servers"
+            }
         }
     }
 }
