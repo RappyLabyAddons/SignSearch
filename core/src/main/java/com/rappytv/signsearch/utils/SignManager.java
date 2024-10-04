@@ -15,7 +15,12 @@ public class SignManager {
     protected SignData signData;
 
     public void onRender(SignBlockEntity signEntity, BlockPosition position) {
-        if (!SignSearchAddon.getConfig().enabled().get() || !SignSearchAddon.getSearchSettings().isEnabled()) return;
+        if (!SignSearchAddon.getConfig().enabled().get() || !SignSearchAddon.getSearchSettings().isEnabled()) {
+            if(SignSearchAddon.getSearchSettings().getSearchString().isEmpty()) {
+                reset();
+            }
+            return;
+        }
         SignData signData = this.signDataMap.get(position);
         if (signData == null || signData.getLastSignUpdated() + 500L < System.currentTimeMillis()) {
             signData = new SignData(signEntity);
@@ -26,6 +31,10 @@ public class SignManager {
 
     public SignData getSignData() {
         return signData;
+    }
+
+    public void reset() {
+        this.signDataMap.clear();
     }
 
     public static class SignData {
@@ -85,6 +94,7 @@ public class SignManager {
 
         private Integer getUserCount(String[] lines, boolean pre) {
             for (String line : lines) {
+                System.out.println(line);
                 if (line == null || !line.contains("/")) continue;
                 String[] parts = line.split("/");
                 if (parts.length <= (pre ? 0 : 1)) continue;
