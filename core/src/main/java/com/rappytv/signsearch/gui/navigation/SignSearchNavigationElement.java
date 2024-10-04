@@ -18,7 +18,7 @@ public class SignSearchNavigationElement extends ScreenNavigationElement {
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("signsearch.ui.sign_search");
+        return Component.translatable("signsearch.ui.title");
     }
 
     @Override
