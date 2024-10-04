@@ -57,7 +57,10 @@ public class SignSearchNavigationActivity extends SimpleActivity {
 
         CheckBoxWidget advancedSearchCheck = new CheckBoxWidget()
             .addId("checkbox-item");
-        advancedSearchCheck.setState(State.UNCHECKED);
+        advancedSearchCheck.setState(settings.isUsingAdvancedOptions() ? State.CHECKED : State.UNCHECKED);
+        advancedSearchCheck.setPressable(() ->
+            settings.setUseAdvancedOptions(advancedSearchCheck.state() == State.CHECKED)
+        );
 
         advancedSearchDiv.addChild(advancedSearchLabel);
         advancedSearchDiv.addChild(advancedSearchCheck);
@@ -74,7 +77,7 @@ public class SignSearchNavigationActivity extends SimpleActivity {
         TextFieldWidget blacklistInput = new TextFieldWidget()
             .addId("input-item");
         blacklistInput.setText(settings.getBlacklistString());
-        blacklistInput.updateListener(settings::setSearchString);
+        blacklistInput.updateListener(settings::setBlacklistString);
 
         blacklistDiv.addChild(blacklistLabel);
         blacklistDiv.addChild(blacklistInput);
@@ -89,6 +92,7 @@ public class SignSearchNavigationActivity extends SimpleActivity {
 
         CheckBoxWidget filterEmptyServersCheck = new CheckBoxWidget()
             .addId("checkbox-item");
+        filterEmptyServersCheck.setState(settings.areEmptyServersFiltered() ? State.CHECKED : State.UNCHECKED);
         filterEmptyServersCheck.setPressable(() ->
             settings.setFilterEmptyServer(filterEmptyServersCheck.state() == State.CHECKED)
         );
@@ -98,8 +102,9 @@ public class SignSearchNavigationActivity extends SimpleActivity {
 
         CheckBoxWidget filterFullServersCheck = new CheckBoxWidget()
             .addId("checkbox-item");
+        filterFullServersCheck.setState(settings.areFullServersFiltered() ? State.CHECKED : State.UNCHECKED);
         filterFullServersCheck.setPressable(() ->
-            settings.setFilterEmptyServer(filterFullServersCheck.state() == State.CHECKED)
+            settings.setFilterFullServer(filterFullServersCheck.state() == State.CHECKED)
         );
 
         filterEmptyServersDiv.addChild(filterEmptyServersLabel);
