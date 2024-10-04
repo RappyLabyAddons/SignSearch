@@ -57,7 +57,7 @@ public class SignSearchNavigationActivity extends SimpleActivity {
 
         CheckBoxWidget advancedSearchCheck = new CheckBoxWidget()
             .addId("checkbox-item");
-        advancedSearchCheck.setState(State.CHECKED);
+        advancedSearchCheck.setState(State.UNCHECKED);
 
         advancedSearchDiv.addChild(advancedSearchLabel);
         advancedSearchDiv.addChild(advancedSearchCheck);
