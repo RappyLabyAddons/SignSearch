@@ -33,10 +33,12 @@ public class SignSearchNavigationActivity extends SimpleActivity {
             .addId("input-container");
 
         HorizontalListWidget header = new HorizontalListWidget()
-            .addId("header");
+            .addId("header")
+            .addId("row");
 
         DivWidget searchDiv = new DivWidget()
-            .addId("input");
+            .addId("input")
+            .addId("search-wrapper");
 
         ComponentWidget searchLabel = ComponentWidget.i18n("signsearch.ui.label.search")
             .addId("input-label");
@@ -69,7 +71,7 @@ public class SignSearchNavigationActivity extends SimpleActivity {
             .addId("advanced-options-label");
 
         DivWidget blacklistDiv = new DivWidget()
-            .addId("input");
+            .addId("row");
 
         ComponentWidget blacklistLabel = ComponentWidget.i18n("signsearch.ui.label.blacklist")
             .addId("input-label");
