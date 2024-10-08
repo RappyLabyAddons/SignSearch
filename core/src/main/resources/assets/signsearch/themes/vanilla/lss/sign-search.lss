@@ -12,20 +12,16 @@
     }
 
     .header {
-        height: 40;
-        width: 100%;
-        space-between-entries: 10;
+        space-between-entries: 15;
 
         .input {
             height: 100%;
-            width: 100;
-            alignment: center;
+            width: 70%;
         }
 
         .checkbox-div {
             height: 100%;
-            width: 20;
-            alignment: center;
+            width: 20%;
         }
     }
 
@@ -34,9 +30,19 @@
         margin-bottom: 10;
     }
 
-    .input {
+    .row {
+        alignment-x: center;
+        width: 40%;
         height: 40;
-        width: 100;
+    }
+
+    .input-label {
+        alignment-x: center;
+    }
+
+    .input-item {
+        height: 100%;
+        width: 100%;
         alignment-x: center;
     }
 
@@ -71,7 +77,6 @@
 
 .checkbox-label {
     top: 0;
-    left: 50%;
     alignment-x: center;
     font-size: 0.8;
 }
