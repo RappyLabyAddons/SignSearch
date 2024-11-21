@@ -1,4 +1,4 @@
-package com.rappytv.signsearch.gui.navigation;
+package com.rappytv.signsearch.gui.settings;
 
 import com.rappytv.signsearch.utils.SignSearchSettings;
 import net.labymod.api.client.gui.screen.Parent;
@@ -17,11 +17,11 @@ import net.labymod.api.client.gui.screen.widget.widgets.layout.list.VerticalList
 
 @Link("sign-search.lss")
 @AutoActivity
-public class SignSearchNavigationActivity extends SimpleActivity {
+public class SignSearchSettingsActivity extends SimpleActivity {
 
     private final SignSearchSettings settings;
 
-    public SignSearchNavigationActivity(SignSearchSettings settings) {
+    public SignSearchSettingsActivity(SignSearchSettings settings) {
         this.settings = settings;
     }
 
