@@ -1,6 +1,7 @@
 package com.rappytv.signsearch;
 
 import com.rappytv.signsearch.gui.settings.SignSearchSettingsActivity;
+import com.rappytv.signsearch.listeners.KeyPressListener;
 import com.rappytv.signsearch.listeners.PauseMenuListener;
 import com.rappytv.signsearch.utils.SignManager;
 import com.rappytv.signsearch.utils.SignSearchSettings;
@@ -13,6 +14,7 @@ public class SignSearchAddon extends LabyAddon<SignSearchConfiguration> {
     private static SignSearchConfiguration config;
     private static SignManager signManager;
     private static SignSearchSettings searchSettings;
+    private SignSearchSettingsActivity settingsActivity;
 
     @Override
     protected void enable() {
@@ -20,8 +22,9 @@ public class SignSearchAddon extends LabyAddon<SignSearchConfiguration> {
         config = configuration();
         signManager = new SignManager();
         searchSettings = new SignSearchSettings(config.enabled());
-        SignSearchSettingsActivity activity = new SignSearchSettingsActivity(searchSettings);
-        registerListener(new PauseMenuListener(activity));
+        settingsActivity = new SignSearchSettingsActivity(searchSettings);
+        registerListener(new KeyPressListener(this));
+        registerListener(new PauseMenuListener(settingsActivity));
     }
 
     @Override
@@ -39,5 +42,9 @@ public class SignSearchAddon extends LabyAddon<SignSearchConfiguration> {
 
     public static SignSearchSettings getSearchSettings() {
         return searchSettings;
+    }
+
+    public SignSearchSettingsActivity getSettingsActivity() {
+        return settingsActivity;
     }
 }
