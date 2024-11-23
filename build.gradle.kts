@@ -26,7 +26,7 @@ labyMod {
         displayName = "SignSearch"
         author = "RappyTV"
         description = "Highlight signs which contain a specific text."
-        minecraftVersion = "1.8<1.21.1"
+        minecraftVersion = "1.8<1.21.3"
         version = rootProject.version.toString()
     }
 }
