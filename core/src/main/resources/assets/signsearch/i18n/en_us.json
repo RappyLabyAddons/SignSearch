@@ -3,6 +3,9 @@
         "settings": {
             "enabled": {
                 "name": "Enabled"
+            },
+            "menuHotkey": {
+                "name": "Settings hotkey"
             }
         },
         "ui": {
