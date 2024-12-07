@@ -21,12 +21,12 @@ import java.awt.*;
 public abstract class SignMixin {
 
     @Inject(method = "render(Lnet/minecraft/world/level/block/entity/SignBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V", at = @At("HEAD"))
-    private void injectSignManager(SignBlockEntity signEntity, float partialTicket, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combiedOverlay, CallbackInfo ci) {
+    private void injectSignManager(SignBlockEntity signEntity, float partialTicket, PoseStack stack, MultiBufferSource buffer, int combinedLight, int combiedOverlay, CallbackInfo ci) {
         SignSearchAddon.getSignManager().onRender((net.labymod.api.client.blockentity.SignBlockEntity) signEntity, (BlockPosition) signEntity.getBlockPos());
     }
 
     @Redirect(method={"renderSignModel"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/model/geom/ModelPart;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V"))
-    private void redirectSignColor(ModelPart modelRenderer, PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn) {
+    private void redirectSignColor(ModelPart modelPart, PoseStack stack, VertexConsumer consumer, int combinedLight, int combinedOverlay) {
         float red = 1.0f;
         float green = 1.0f;
         float blue = 1.0f;
@@ -39,6 +39,6 @@ public abstract class SignMixin {
             blue = signColor.getBlue();
             alpha = signColor.getAlpha();
         }
-        modelRenderer.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, new Color(red, green, blue, alpha).getRGB());
+        modelPart.render(stack, consumer, combinedLight, combinedOverlay, new Color(red, green, blue, alpha).getRGB());
     }
 }

@@ -6,10 +6,10 @@ plugins {
 val versions = providers.gradleProperty("net.labymod.minecraft-versions").get().split(";")
 
 group = "com.rappytv.signsearch"
-version = providers.environmentVariable("VERSION").getOrElse("1.0.3")
+version = providers.environmentVariable("VERSION").getOrElse("1.0.4")
 
 labyMod {
-    defaultPackageName = "com.rappytv.signsearch" //change this to your main package name (used by all modules)
+    defaultPackageName = "com.rappytv.signsearch"
 
     minecraft {
         registerVersion(versions.toTypedArray()) {
@@ -26,7 +26,7 @@ labyMod {
         displayName = "SignSearch"
         author = "RappyTV"
         description = "Highlight signs which contain a specific text."
-        minecraftVersion = "1.8<1.21.1"
+        minecraftVersion = "1.8<1.21.4"
         version = rootProject.version.toString()
     }
 }

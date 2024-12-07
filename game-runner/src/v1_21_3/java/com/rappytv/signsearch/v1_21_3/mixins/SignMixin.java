@@ -1,11 +1,11 @@
-package com.rappytv.signsearch.v1_19_3.mixins;
+package com.rappytv.signsearch.v1_21_3.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.rappytv.signsearch.SignSearchAddon;
 import com.rappytv.signsearch.utils.SignManager.SignData;
 import net.labymod.api.client.world.block.BlockPosition;
-import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import java.awt.*;
 
 @Mixin(SignRenderer.class)
 public abstract class SignMixin {
@@ -23,8 +24,8 @@ public abstract class SignMixin {
         SignSearchAddon.getSignManager().onRender((net.labymod.api.client.blockentity.SignBlockEntity) signEntity, (BlockPosition) signEntity.getBlockPos());
     }
 
-    @Redirect(method={"renderSignModel"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/model/geom/ModelPart;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V"))
-    private void redirectSignColor(ModelPart modelPart, PoseStack stack, VertexConsumer bufferIn, int combinedLight, int combinedOverlay) {
+    @Redirect(method={"renderSign"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/model/Model;renderToBuffer(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V"))
+    private void redirectSignColor(Model model, PoseStack stack, VertexConsumer consumer, int combinedLight, int combiedOverlay) {
         float red = 1.0f;
         float green = 1.0f;
         float blue = 1.0f;
@@ -37,6 +38,6 @@ public abstract class SignMixin {
             blue = signColor.getBlue();
             alpha = signColor.getAlpha();
         }
-        modelPart.render(stack, bufferIn, combinedLight, combinedOverlay, red, green, blue, alpha);
+        model.renderToBuffer(stack, consumer, combinedLight, combiedOverlay, new Color(red, green, blue, alpha).getRGB());
     }
 }
